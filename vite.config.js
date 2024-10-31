@@ -25,7 +25,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/chat_app/', // Change this to your repository name
+  base: '/React_Chat_App/', // Change this to your repository name
   plugins: [react()],
   build: {
     outDir: 'dist', // This should be where Vite outputs the built files
