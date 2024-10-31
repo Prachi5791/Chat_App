@@ -8,10 +8,11 @@ import { doc, setDoc } from "firebase/firestore";
 import upload from '../../lib/upload';
 
 
+
 const Login = () =>{
     const [avatar, setAvatar] = useState({
         file: null,
-        url: ""
+        url: "./asset/avatar.png"
 
     });
 
@@ -34,12 +35,15 @@ const Login = () =>{
         const formData = new FormData(e.target);
 
         const { username, email, password } = Object.fromEntries(formData);
+        //const imgUrl = avatar.file ? await upload(avatar.file) : "./default-avatar.png";
+
+        console.log("User Data:", formData); 
 
         // console.log(username);
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
-            const imgUrl = await upload(avatar.file)
+            const imgUrl = avatar.file ? await upload(avatar.file) : avatar.url;
 
             await setDoc(doc(db, "users", res.user.uid), {
                 username,
